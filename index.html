@@ -8,22 +8,40 @@
         /* 全局样式：适配手机+背景 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            background: url('IMG_20250708_020931.png') no-repeat center/cover; 
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); 
             min-height: 100vh;
-            font-family: sans-serif;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
             color: #333;
             padding: 20px 0;
+            position: relative;
+        }
+        
+        /* 添加星空背景效果 */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 4px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 3px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 4px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            z-index: -1;
         }
 
-        /* 顶部个人信息：粉色玻璃卡片 */
+        /* 顶部个人信息：玻璃卡片 */
         .profile-card {
             width: 90%; max-width: 400px;
             padding: 20px; margin: 30px auto;
             border-radius: 16px;
             backdrop-filter: blur(10px); /* 毛玻璃核心 */
-            background: rgba(255, 182, 193, 0.3); /* 粉色背景 */
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255, 182, 193, 0.5); /* 粉色边框 */
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
             text-align: center;
             opacity: 0;
             transform: translateY(20px);
@@ -32,28 +50,40 @@
         .profile-card img {
             width: 120px; height: 120px;
             border-radius: 50%;
-            border: 3px solid rgba(255, 182, 193, 0.8); /* 粉色边框 */
+            border: 3px solid rgba(255,255,255,0.8);
             margin-bottom: 10px;
             transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         .profile-card img:hover {
             transform: scale(1.05);
         }
+        
+        /* 星屿俱乐部文字 - 彩色流光效果 */
         .profile-card h2 { 
-            font-size: 1.5rem; 
+            font-size: 1.8rem; 
             margin-bottom: 8px; 
-            color: #000; /* 黑色字体 */
-        }
-        .profile-card p { 
-            color: #000; /* 黑色字体 */
-            opacity: 0.9; 
-        }
-        .status-open {
-            color: #28a745 !important; /* 绿色字体 - 正常营业中 */
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb, #ff9a9e);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
             font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        /* 正在营业中 - 绿色 */
+        .profile-card p { 
+            color: #4CAF50; 
+            font-weight: bold;
+            opacity: 0.9; 
+            font-size: 1.1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
-        /* 音乐开关按钮（粉色玻璃质感） */
+        /* 音乐开关按钮（玻璃质感） */
         #musicBtn {
             display: block;
             margin: 20px auto 0;
@@ -61,30 +91,32 @@
             border: none;
             border-radius: 12px;
             backdrop-filter: blur(8px);
-            background: rgba(255, 182, 193, 0.3); /* 粉色背景 */
-            border: 1px solid rgba(255, 182, 193, 0.5); /* 粉色边框 */
-            color: #000; /* 黑色字体 */
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         #musicBtn:hover {
-            background: rgba(255, 182, 193, 0.5); /* 更深的粉色 */
+            background: rgba(255,255,255,0.25);
             transform: scale(1.05);
         }
         #musicBtn:active {
             transform: scale(0.98);
         }
 
-        /* 公告卡片样式 - 粉色主题 */
+        /* 公告卡片样式 */
         .announcement-card {
             width: 90%; max-width: 400px;
             padding: 20px; margin: 20px auto;
             border-radius: 16px;
             backdrop-filter: blur(10px);
-            background: rgba(255, 182, 193, 0.3); /* 粉色背景 */
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255, 182, 193, 0.5); /* 粉色边框 */
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -100,7 +132,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fad0c4, #ffb6c1); /* 粉色渐变 */
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4, #fad0c4, #a1c4fd);
             background-size: 400% 400%;
             animation: gradient 3s ease infinite;
         }
@@ -115,26 +147,42 @@
         .announcement-icon {
             font-size: 1.5rem;
             margin-right: 10px;
-            color: #000; /* 黑色字体 */
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
         .announcement-title {
             font-size: 1.2rem;
-            color: #000; /* 黑色字体 */
+            color: #fff;
             font-weight: bold;
+            background: linear-gradient(90deg, #ff9a9e, #fad0c4, #a1c4fd);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
         .announcement-content {
-            color: #000; /* 黑色字体 */
+            color: #fff;
             font-size: 1rem;
             line-height: 1.5;
             padding: 10px;
-            background: rgba(255, 255, 255, 0.3); /* 半透明白色背景 */
+            background: rgba(255,255,255,0.1);
             border-radius: 8px;
             margin-top: 10px;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        /* 添加内容动画效果 */
+        .announcement-content:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        /* 链接按钮列表：粉色玻璃质感 */
+        /* 链接按钮列表：玻璃质感 */
         .links-container {
             width: 90%; max-width: 400px;
             margin: 0 auto 30px;
@@ -150,14 +198,15 @@
             margin: 10px 0;
             border-radius: 8px;
             backdrop-filter: blur(8px); /* 按钮毛玻璃 */
-            background: rgba(255, 182, 193, 0.3); /* 粉色背景 */
-            border: 1px solid rgba(255, 182, 193, 0.5); /* 粉色边框 */
-            color: #000; /* 黑色字体 */
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
             text-decoration: none;
             transition: all 0.3s;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         .link-item:hover {
-            background: rgba(255, 182, 193, 0.5); /* 更深的粉色 */
+            background: rgba(255,255,255,0.25);
             transform: scale(1.03);
         }
         .link-item img {
@@ -169,9 +218,7 @@
         /* 动画效果 */
         @keyframes gradient {
             0% { background-position: 0% 50%; }
-            30% { background-position: 100% 50%; }
-            50% { background-position: 0% 50%; }
-            80% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
         
@@ -187,7 +234,7 @@
         }
         
         .fade-in {
-            animation: fadeInUp 1s ease forwards;
+            animation: fadeInUp 0.8s ease forwards;
         }
 
         /* 手机端适配 */
@@ -199,6 +246,9 @@
                 padding: 10px 12px;
                 font-size: 0.9rem;
             }
+            .profile-card h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -206,87 +256,88 @@
     <!-- 顶部个人信息卡片 -->
     <div id="v2" class="profile-card fade-in" style="opacity: 1; transform: translateY(0px);">
         <img id="v3" src="mmexport1754134112937.jpeg" alt="头像">
-        <h2 id="v4">星屿俱乐部官网</h2>
-        <p id="v5" class="status-open">●正常营业中</p>
-        <p id="v5">●董事长:南栀</p>
+        <h2 id="v4">星屿俱乐部</h2>
+        <p id="v5">正在营业中</p>
         <!-- 音乐开关按钮 -->
         <button id="musicBtn">播放音乐 🎵</button>
+    </div>
+    
+    <!-- 公告卡片0- 营业范围-->
+    <div id="announcement3" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
+        <div class="announcement-header">
+            <div class="announcement-icon">🎮</div>
+            <div class="announcement-title">营业范围</div>
+        </div>
+        <div class="announcement-content">
+            主营:光遇  超自然行动
+        </div>
+        <div class="announcement-content">
+            副接:和平精英  王者荣耀  等等
+        </div>
     </div>
     
     <!-- 公告卡片 -->
     <div id="v6" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
         <div id="v7" class="announcement-header">
-            <div id="v8" class="announcement-icon">
-           🖤
-            </div>
-            <div id="v9" class="announcement-title">营业范围
-            </div>
+            <div id="v8" class="announcement-icon">👑</div>
+            <div id="v9" class="announcement-title">星屿俱乐部管理架构</div>
         </div>
-        <div id="v10" class="announcement-content">
-            主营:光遇 超自然
+        <div class="announcement-content">
+            董事长:南栀
         </div>
-        <div id="v11" class="announcement-content">
-            副接:和平精英 王者荣耀 第五人格 等等
+        <div class="announcement-content">
+            高管:晴
         </div>
-        <div id="v11" class="announcement-content">
-        俱乐部营业时间08.00-02.00
-         </div>
+        <div class="announcement-content">
+            管理:小锦
+        </div>
     </div>
     
     <!-- 公告卡片2 -->
     <div id="announcement2" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
         <div class="announcement-header">
-            <div class="announcement-icon">
-            ❤️
-            </div>
-            <div class="announcement-title">联系方式
-            </div>
+            <div class="announcement-icon">💬</div>
+            <div class="announcement-title">点单/咨询『微信』</div>
         </div>
         <div class="announcement-content">
-            董事长『南栀』wx:dyx1211zzy1207
+            董事长:dyx1211zzy1207
         </div>
         <div class="announcement-content">
-            高管『晴』wx:TDAQingNing
+            高管:TDAQINgNing
         </div>
         <div class="announcement-content">
-            管理『小锦』wx:cmxyyawjk0921
+            管理:cmxyyawjk0921
         </div>
-    <div class="announcement-content">
-点单/当陪欢迎咨询
     </div>
-  </div>
-    
-    <!-- 公告卡片3 - 关于我们 -->
+        <!-- 公告卡片3 - 关于我们 -->
     <div id="announcement3" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
         <div class="announcement-header">
-            <div class="announcement-icon">
-            💜
-            </div>
-            <div class="announcement-title">关于我们
-            </div>
+            <div class="announcement-icon">ℹ️</div>
+            <div class="announcement-title">关于我们</div>
         </div>
         <div class="announcement-content">
-         下单需知
-           <div class="announcement-content">
-           我们致力于打造一个公平公正的陪玩平台  感谢您的信任和支持
-          </div>
-          <div class="announcement-content">
-          ①陪陪全程闭麦无交流可投诉
-           </div>
-          <div class="announcement-content">
-          ②陪陪战绩拉胯态度差可投诉
-           </div>
-          <div class="announcement-content">
-          ③有陪陪私下加老板好友可投诉
-           </div>
-          <div class="announcement-content">
-          ④如有任何不满意请联系管理层
+            下单需知
         </div>
-          <div class="announcement-content">
-        ✨希望宝宝们都可以得到优质服务
+        <div class="announcement-content">
+            我们致力于打造一个公平公正的陪玩平台  感谢您的信任和支持
         </div>
-          <div class="announcement-content">
-        ✨也希望开开心心的度过每一个日子
+        <div class="announcement-content">
+            ①陪陪全程闭麦无交流可投诉
+        </div>
+        <div class="announcement-content">
+            ②陪陪战绩拉胯态度差可投诉
+        </div>
+        <div class="announcement-content">
+            ③有陪陪私下加老板好友可投诉
+        </div>
+        <div class="announcement-content">
+            ④如有任何不满意请联系管理层
+        </div>
+        <div class="announcement-content">
+            ✨希望宝宝们都可以得到优质服务
+        </div>
+        <div class="announcement-content">
+            ✨也希望开开心心的度过每一个日子
         </div>
     </div>
     
@@ -320,4 +371,21 @@
                 });
             }
             isPlaying = !isPlaying;
-     
+        }
+        
+        // 绑定音乐按钮点击事件
+        musicBtn.addEventListener('click', toggleMusic);
+        
+        // 添加页面加载动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = 1;
+                    el.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
