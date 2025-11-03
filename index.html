@@ -164,8 +164,8 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
+        /* 公告内容 - 添加蓝色渐变文字效果 */
         .announcement-content {
-            color: #fff;
             font-size: 1rem;
             line-height: 1.5;
             padding: 10px;
@@ -173,6 +173,12 @@
             border-radius: 8px;
             margin-top: 10px;
             transition: all 0.3s ease;
+            background: linear-gradient(90deg, #a1c4fd, #c2e9fb, #a1c4fd);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 3s ease infinite;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
@@ -299,7 +305,7 @@
             <div class="announcement-icon">💬</div>
             <div class="announcement-title">点单/咨询『微信』</div>
         </div>
-        <div class="announcement-content">
+                <div class="announcement-content">
             董事长:dyx1211zzy1207
         </div>
         <div class="announcement-content">
@@ -309,14 +315,16 @@
             管理:cmxyyawjk0921
         </div>
     </div>
-        <!-- 公告卡片3 - 关于我们 -->
-    <div id="announcement3" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
+    
+    <!-- 公告卡片3 - 关于我们 -->
+        <div id="announcement3" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
         <div class="announcement-header">
             <div class="announcement-icon">ℹ️</div>
             <div class="announcement-title">关于我们</div>
         </div>
         <div class="announcement-content">
             下单需知
+        </div>
         <div class="announcement-content">
             我们致力于打造一个公平公正的陪玩平台  感谢您的信任和支持
         </div>
@@ -341,7 +349,7 @@
     </div>
     
     <!-- 音乐播放核心（隐藏的音频标签） -->
-    <audio id="bgMusic" src="室内系的TrackMaker - hanser.mp3" loop muted>
+    <audio id="bgMusic" src="mmexport1762145970163.mp4" loop muted>
         您的浏览器不支持音频播放
     </audio>
     
