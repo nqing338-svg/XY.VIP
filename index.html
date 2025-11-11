@@ -14,6 +14,7 @@
             color: #333;
             padding: 20px 0;
             position: relative;
+            overflow-x: hidden;
         }
         
         /* 添加星空背景效果 */
@@ -31,6 +32,7 @@
             background-size: 550px 550px, 350px 350px, 250px 250px;
             background-position: 0 0, 40px 60px, 130px 270px;
             z-index: -1;
+            animation: twinkle 8s infinite alternate;
         }
 
         /* 顶部个人信息：玻璃卡片 */
@@ -182,6 +184,31 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
+        /* 可点击的公告内容 */
+        .clickable-content {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .clickable-content:hover {
+            transform: translateY(-3px);
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .clickable-content::after {
+            content: "🔗";
+            position: absolute;
+            right: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .clickable-content:hover::after {
+            opacity: 1;
+        }
+
         /* 添加内容动画效果 */
         .announcement-content:hover {
             transform: translateY(-3px);
@@ -239,8 +266,22 @@
             }
         }
         
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
         .fade-in {
             animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* 底部版权信息 */
+                .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+            padding: 20px 0;
+            margin-top: 20px;
         }
 
         /* 手机端适配 */
@@ -261,7 +302,7 @@
 <body id="v1">
     <!-- 顶部个人信息卡片 -->
     <div id="v2" class="profile-card fade-in" style="opacity: 1; transform: translateY(0px);">
-        <img id="v3" src="mmexport1754134112937.jpeg" alt="头像">
+        <img id="v3" src="mmexport1754134112937.jpeg" alt="星屿俱乐部头像">
         <h2 id="v4">星屿俱乐部</h2>
         <p id="v5">正在营业中</p>
         <!-- 音乐开关按钮 -->
@@ -274,7 +315,7 @@
             <div class="announcement-icon">🎮</div>
             <div class="announcement-title">营业范围</div>
         </div>
-        <div class="announcement-content">
+         <div class="announcement-content">
             主营:光遇  超自然行动
         </div>
         <div class="announcement-content">
@@ -282,7 +323,7 @@
         </div>
     </div>
     
-    <!-- 公告卡片 -->
+    <!-- 公告卡片 - 管理架构 -->
     <div id="v6" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
         <div id="v7" class="announcement-header">
             <div id="v8" class="announcement-icon">👑</div>
@@ -291,33 +332,36 @@
         <div class="announcement-content">
             董事长:南栀
         </div>
-        <div class="announcement-content">
-            高管:晴
+        <div id="qing-link" class="announcement-content clickable-content">
+            副团:晴
         </div>
-        <div class="announcement-content">
-            管理:小锦
+        <div id="xiaojin-link" class="announcement-content clickable-content">
+        :    高管:小锦
+        </div>
+         <div class="announcement-content">
+            管理:欣宝
         </div>
     </div>
     
-    <!-- 公告卡片2 -->
+    <!-- 公告卡片2 - 联系方式 -->
     <div id="announcement2" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
         <div class="announcement-header">
             <div class="announcement-icon">💬</div>
             <div class="announcement-title">点单/咨询『微信』</div>
         </div>
-                <div class="announcement-content">
+        <div class="announcement-content">
             董事长:dyx1211zzy1207
         </div>
         <div class="announcement-content">
-            高管:TDAQINgNing
+            副团:TDAQINgNing
         </div>
         <div class="announcement-content">
-            管理:cmxyyawjk0921
+             高管:cmxyyawjk0921
         </div>
     </div>
     
     <!-- 公告卡片3 - 关于我们 -->
-        <div id="announcement3" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
+    <div id="announcement3" class="announcement-card fade-in" style="opacity: 1; transform: translateY(0px);">
         <div class="announcement-header">
             <div class="announcement-icon">ℹ️</div>
             <div class="announcement-title">关于我们</div>
@@ -347,6 +391,12 @@
             ✨也希望开开心心的度过每一个日子
         </div>
     </div>
+    
+    <!-- 底部版权信息 -->
+    <div class="footer fade-in">
+        © 2023 星屿俱乐部 版权所有
+    </div>
+    
     <!-- 音乐播放核心（隐藏的音频标签） -->
     <audio id="bgMusic" src="mmexport1762145970163.mp4" loop muted>
         您的浏览器不支持音频播放
@@ -383,7 +433,7 @@
         musicBtn.addEventListener('click', toggleMusic);
         
         // 添加页面加载动画
-        document.addEventListener('DOMContentLoaded', function() {
+               document.addEventListener('DOMContentLoaded', function() {
             const elements = document.querySelectorAll('.fade-in');
             elements.forEach((el, index) => {
                 setTimeout(() => {
@@ -391,6 +441,22 @@
                     el.style.transform = 'translateY(0)';
                 }, index * 200);
             });
+            
+            // 添加副团晴的点击跳转事件
+            const qingLink = document.getElementById('qing-link');
+            if (qingLink) {
+                qingLink.addEventListener('click', function() {
+                    window.open('https://nqing338-svg.github.io/TDA.Qing.', '_blank');
+                });
+            }
+            
+            // 添加管理小锦的点击跳转事件
+            const xiaojinLink = document.getElementById('xiaojin-link');
+            if (xiaojinLink) {
+                xiaojinLink.addEventListener('click', function() {
+                    window.open('https://nqing338-svg.github.io/xj.VIP', '_blank');
+                });
+            }
         });
     </script>
 </body>
